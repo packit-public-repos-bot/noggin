@@ -260,7 +260,7 @@ def test_group_remove_member(client, dummy_user_as_group_manager, make_user):
     expected_message = """You got it! testuser has been removed from dummy-group.
     <span class='ml-auto' id="flashed-undo-button">
         <form action="/group/dummy-group/members/" method="post">
-            <input id="username" name="username" required type="hidden" value="testuser">
+            <input id="username" name="username" type="hidden" value="testuser">
             <button type="submit" class="btn btn-outline-success btn-sm"
              name="new_member_username" value="testuser">
                 Undo
@@ -304,7 +304,7 @@ def test_group_remove_self(client, logged_in_dummy_user, dummy_group):
     expected_message = """You got it! dummy has been removed from dummy-group.
     <span class='ml-auto' id="flashed-undo-button">
         <form action="/group/dummy-group/members/" method="post">
-            <input id="username" name="username" required type="hidden" value="dummy">
+            <input id="username" name="username" type="hidden" value="dummy">
             <button type="submit" class="btn btn-outline-success btn-sm"
              name="new_member_username" value="dummy">
                 Undo
