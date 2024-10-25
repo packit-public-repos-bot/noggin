@@ -297,9 +297,14 @@ def test_group_remove_self(client, logged_in_dummy_user, dummy_group):
     leave_btn = page.select_one("#leave-group-btn")
     assert leave_btn.get_text(strip=True) == "Leave group"
 
-    result = client.post(
-        '/group/dummy-group/members/remove', data={"username": "dummy"}
-    )
+    with fml_testing.mock_sends(
+        MemberRemovedV1(
+            {"msg": {"agent": "dummy", "user": "dummy", "group": "dummy-group"}}
+        )
+    ):
+        result = client.post(
+            '/group/dummy-group/members/remove', data={"username": "dummy"}
+        )
 
     expected_message = """You got it! dummy has been removed from dummy-group.
     <span class='ml-auto' id="flashed-undo-button">
