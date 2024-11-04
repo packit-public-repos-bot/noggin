@@ -18,7 +18,7 @@ LOCK_TMPDIR=$(mktemp -d -t poetry-lock-XXXXXX)
 
 mkdir -p $LOCK_TMPDIR
 # Workaround https://github.com/python-poetry/poetry-plugin-export/issues/183
-sed -e '/^urllib3 = {version = "<2"/d' poetry.lock > $LOCK_TMPDIR/poetry.lock
+sed -e '/^\s\+{version = "<2"/d' poetry.lock > $LOCK_TMPDIR/poetry.lock
 cp -p pyproject.toml $LOCK_TMPDIR/
 
 curl -o $STRATEGY_TMPFILE $STRATEGY_URL
